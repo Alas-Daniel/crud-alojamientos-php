@@ -1,0 +1,30 @@
+:root{
+    --primary-color: #131d35;
+    --secondary-color: #f2b100;
+    --green-color: #3c9140;
+    --red-color: #E91E63;
+}
+
+.bg-primary{
+    background-color: var(--primary-color) !important;
+}
+.text-primary{
+    color: var(--primary-color) !important;
+}
+
+.btn-warning{
+    background-color: var(--secondary-color) !important;
+    border-color: var(--secondary-color);
+}
+
+.btn-danger{
+    background-color: var(--red-color) !important;
+    border-color: var(--red-color);
+}
+
+.btn-success{
+    background-color: var(--green-color) !important;
+    border-color: var(--green-color);
+}
+
+

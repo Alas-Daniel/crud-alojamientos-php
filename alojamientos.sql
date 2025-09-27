@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: sql207.infinityfree.com
--- Tiempo de generación: 27-09-2025 a las 01:14:18
+-- Tiempo de generación: 27-09-2025 a las 01:28:53
 -- Versión del servidor: 11.4.7-MariaDB
 -- Versión de PHP: 7.2.22
 
@@ -69,7 +69,8 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`id`, `nombre`, `email`, `password`, `rol`, `created_at`) VALUES
 (1, 'Daniel Alas', 'alas2020@gmail.com', '$2y$10$v9/3CfXt8r2CiM.pru.4ROGkSF8VTTNiIP7rKNzi18u4DqIaJ7.N.', 'admin', '2025-09-24 16:30:42'),
 (2, 'Daniela Karmina', 'karminaconstante21@gmail.com', '$2y$10$zWayVSv4k8DXHQcOWKASk.sFe03zZTtIdKYseW6h9zLulQ7ssUmGm', 'usuario', '2025-09-27 04:42:13'),
-(3, 'Josué Alas', 'josuealas@gmail.com', '$2y$10$u1KhXuMWYE0aQP0Nz967cOvkrTsRh90W9p29IhuCB06M.eQVpLBnG', 'usuario', '2025-09-27 05:02:07');
+(3, 'Josué Alas', 'josuealas@gmail.com', '$2y$10$u1KhXuMWYE0aQP0Nz967cOvkrTsRh90W9p29IhuCB06M.eQVpLBnG', 'usuario', '2025-09-27 05:02:07'),
+(4, 'Juan Perez', 'juan.perez@gmail.com', '$2y$10$GwyBHxtr2CFjgNMXAXGQwOZ5Oz/60zySwhkWzavV3LFHs6nNX3ZcG', 'admin', '2025-09-27 05:20:08');
 
 -- --------------------------------------------------------
 
@@ -137,7 +138,7 @@ ALTER TABLE `alojamientos`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario_alojamiento`

@@ -54,12 +54,15 @@ $accommodations = $accommodationController->index(); // Trae todos los alojamien
                     <?php foreach ($accommodations as $accommodation): ?>
                         <div class="col-md-4">
                             <div class="card shadow-sm h-100">
-                                <img src="<?= htmlspecialchars($accommodation['imagen']) ?>" class="card-img-top" alt="<?= htmlspecialchars($accommodation['nombre']) ?>">
+                                <!-- Contenedor de la imagen con altura fija y recorte -->
+                                <div class="overflow-hidden" style="height: 200px;">
+                                    <img src="<?= htmlspecialchars($accommodation['imagen']) ?>" class="card-img-top w-100 h-100" style="object-fit: cover;" alt="<?= htmlspecialchars($accommodation['nombre']) ?>">
+                                </div>
                                 <div class="card-body d-flex flex-column">
                                     <h5 class="card-title"><?= htmlspecialchars($accommodation['nombre']) ?></h5>
                                     <p class="card-text text-secondary"><?= htmlspecialchars($accommodation['descripcion']) ?></p>
                                     <p class="fw-bold text-primary mb-3">$<?= htmlspecialchars($accommodation['precio']) ?> / noche</p>
-                                    <a href="/crud-alojamientos/app/views/public/login.php" class="btn btn-success">Agregar ahora</a>
+                                    <a href="/crud-alojamientos/app/views/public/login.php" class="btn btn-success mt-auto">Agregar ahora</a>
                                 </div>
                             </div>
                         </div>

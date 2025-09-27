@@ -56,16 +56,41 @@ $accommodations = $accommodationController->index();
     <!-- Header -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
         <div class="container">
-            <a class="navbar-brand fw-bold fs-4" href="/crud-alojamientos/app/views/admin/dashboard_admin.php">Panel de Administrador</a>
-            <div class="mx-auto text-white fw-semibold">
+            <a class="navbar-brand fw-bold fs-4" href="/crud-alojamientos/app/views/admin/dashboard_admin.php">
+                Panel de Administrador
+            </a>
+
+            <!-- Texto centrado en pantallas grandes -->
+            <div class="mx-auto text-white fw-semibold d-none d-lg-block">
                 Bienvenido, Administrador
             </div>
-            <div class="ms-auto d-flex gap-2">
+
+            <!-- Botones en pantallas grandes -->
+            <div class="ms-auto d-none d-lg-flex gap-2">
                 <a href="/crud-alojamientos/app/views/public/home.php" class="btn btn-outline-light">Ir a la Landing</a>
                 <a href="/crud-alojamientos/app/views/public/logout.php" class="btn btn-danger">Cerrar sesión</a>
             </div>
+
+            <!-- Botón hamburguesa visible solo en móvil -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
         </div>
     </nav>
+
+    <!-- Offcanvas limitado usando w-25 -->
+    <div class="offcanvas offcanvas-end bg-primary text-white w-75" tabindex="-1" id="offcanvasMenu">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title fw-bold">Menú</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column gap-3">
+            <div class="fw-semibold">Bienvenido, Administrador</div>
+            <a href="/crud-alojamientos/app/views/public/home.php" class="btn btn-outline-light">Ir a la Landing</a>
+            <a href="/crud-alojamientos/app/views/public/logout.php" class="btn btn-danger">Cerrar sesión</a>
+        </div>
+    </div>
+
 
     <section class="container py-5">
         <!-- Agregar alojamiento -->
@@ -98,16 +123,18 @@ $accommodations = $accommodationController->index();
             <?php foreach ($accommodations as $accommodation): ?>
                 <div class="col-md-4">
                     <div class="card shadow-sm">
-                        <img src="<?= $accommodation['imagen'] ?>" class="card-img-top" alt="<?= $accommodation['nombre'] ?>">
+                        <div class="overflow-hidden" style="height: 200px;">
+                            <img src="<?= $accommodation['imagen'] ?>" class="card-img-top w-100 h-100" style="object-fit: cover;" alt="<?= $accommodation['nombre'] ?>">
+                        </div>
                         <div class="card-body">
                             <h5 class="card-title"><?= $accommodation['nombre'] ?></h5>
                             <p class="card-text"><?= $accommodation['descripcion'] ?></p>
                             <p class="text-primary fw-bold">$<?= $accommodation['precio'] ?> / noche</p>
                             <button type="button" class="btn btn-warning w-100" data-bs-toggle="modal" data-bs-target="#editModal<?= $accommodation['id'] ?>">Editar</button>
-
                         </div>
                     </div>
                 </div>
+
 
                 <div class="modal fade" id="editModal<?= $accommodation['id'] ?>" tabindex="-1" aria-labelledby="editModalLabel<?= $accommodation['id'] ?>" aria-hidden="true">
                     <div class="modal-dialog">

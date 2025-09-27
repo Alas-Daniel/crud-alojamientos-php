@@ -43,19 +43,44 @@ $myAccommodations = $controller->getMyAccommodations($userId);
 
 <body class="bg-light">
 
-    <!-- Header -->
+    <!-- Header Usuario -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
         <div class="container">
-            <a class="navbar-brand fw-bold fs-4" href="/crud-alojamientos/app/views/user/dashboard_user.php">Panel de Usuario</a>
-            <div class="mx-auto text-white fw-semibold">
+            <a class="navbar-brand fw-bold fs-4" href="/crud-alojamientos/app/views/user/dashboard_user.php">
+                Panel de Usuario
+            </a>
+
+            <!-- Texto centrado en pantallas grandes -->
+            <div class="mx-auto text-white fw-semibold d-none d-lg-block">
                 Bienvenido, <?= htmlspecialchars($userName) ?>
             </div>
-            <div class="ms-auto d-flex gap-2">
+
+            <!-- Botones en pantallas grandes -->
+            <div class="ms-auto d-none d-lg-flex gap-2">
                 <a href="/crud-alojamientos/app/views/public/home.php" class="btn btn-outline-light">Ir a la Landing</a>
                 <a href="/crud-alojamientos/app/views/public/logout.php" class="btn btn-danger">Cerrar sesión</a>
             </div>
+
+            <!-- Botón hamburguesa visible solo en móvil -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasUserMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
         </div>
     </nav>
+
+    <!-- Offcanvas Usuario -->
+    <div class="offcanvas offcanvas-end bg-primary text-white w-75" tabindex="-1" id="offcanvasUserMenu">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title fw-bold">Menú</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column gap-3">
+            <div class="fw-semibold">Bienvenido, <?= htmlspecialchars($userName) ?></div>
+            <a href="/crud-alojamientos/app/views/public/home.php" class="btn btn-outline-light">Ir a la Landing</a>
+            <a href="/crud-alojamientos/app/views/public/logout.php" class="btn btn-danger">Cerrar sesión</a>
+        </div>
+    </div>
+
 
     <div class="container py-5">
 
@@ -72,18 +97,22 @@ $myAccommodations = $controller->getMyAccommodations($userId);
                 }
             ?>
                 <div class="col-md-4">
-                    <div class="card shadow-sm">
-                        <img src="<?= htmlspecialchars($accommodation['imagen']) ?>" class="card-img-top" alt="<?= htmlspecialchars($accommodation['nombre']) ?>">
-                        <div class="card-body">
+                    <div class="card shadow-sm h-100">
+                        <!-- Contenedor de la imagen con altura fija y recorte -->
+                        <div class="overflow-hidden" style="height: 200px;">
+                            <img src="<?= htmlspecialchars($accommodation['imagen']) ?>" class="card-img-top w-100 h-100" style="object-fit: cover;" alt="<?= htmlspecialchars($accommodation['nombre']) ?>">
+                        </div>
+                        <div class="card-body d-flex flex-column">
                             <h5 class="card-title"><?= htmlspecialchars($accommodation['nombre']) ?></h5>
                             <p class="card-text"><?= htmlspecialchars($accommodation['descripcion']) ?></p>
                             <p class="text-primary fw-bold">$<?= htmlspecialchars($accommodation['precio']) ?> / noche</p>
-                            <a href="?add=<?= $accommodation['id'] ?>" class="btn btn-success w-100 <?= $alreadyAdded ? 'disabled' : '' ?>">
+                            <a href="?add=<?= $accommodation['id'] ?>" class="btn btn-success w-100 mt-auto <?= $alreadyAdded ? 'disabled' : '' ?>">
                                 <?= $alreadyAdded ? 'Agregado' : 'Agregar a mi lista' ?>
                             </a>
                         </div>
                     </div>
                 </div>
+
             <?php endforeach; ?>
         </div>
 
@@ -92,15 +121,19 @@ $myAccommodations = $controller->getMyAccommodations($userId);
         <div class="row g-4">
             <?php foreach ($myAccommodations as $accommodation): ?>
                 <div class="col-md-4">
-                    <div class="card shadow-sm">
-                        <img src="<?= htmlspecialchars($accommodation['imagen']) ?>" class="card-img-top" alt="<?= htmlspecialchars($accommodation['nombre']) ?>">
-                        <div class="card-body">
+                    <div class="card shadow-sm h-100">
+                        <!-- Contenedor de la imagen con altura fija y recorte -->
+                        <div class="overflow-hidden" style="height: 200px;">
+                            <img src="<?= htmlspecialchars($accommodation['imagen']) ?>" class="card-img-top w-100 h-100" style="object-fit: cover;" alt="<?= htmlspecialchars($accommodation['nombre']) ?>">
+                        </div>
+
+                        <div class="card-body d-flex flex-column">
                             <h5 class="card-title"><?= htmlspecialchars($accommodation['nombre']) ?></h5>
                             <p class="card-text"><?= htmlspecialchars($accommodation['descripcion']) ?></p>
                             <p class="text-primary fw-bold">$<?= htmlspecialchars($accommodation['precio']) ?> / noche</p>
 
                             <!-- Botón para abrir modal -->
-                            <button type="button" class="btn btn-danger w-100"
+                            <button type="button" class="btn btn-danger w-100 mt-auto"
                                 data-bs-toggle="modal"
                                 data-bs-target="#deleteModal<?= $accommodation['id'] ?>">
                                 Eliminar
@@ -108,6 +141,7 @@ $myAccommodations = $controller->getMyAccommodations($userId);
                         </div>
                     </div>
                 </div>
+
 
                 <!-- Modal individual -->
                 <div class="modal fade" id="deleteModal<?= $accommodation['id'] ?>" tabindex="-1" aria-labelledby="deleteModalLabel<?= $accommodation['id'] ?>" aria-hidden="true">

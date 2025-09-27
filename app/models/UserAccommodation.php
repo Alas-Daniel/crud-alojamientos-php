@@ -3,7 +3,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/crud-alojamientos/config/Database.php
 
 class UserAccommodation {
 
-    // Obtener los alojamientos seleccionados por un usuario
+    // Obtener alojamientos seleccionados por usuario
     public static function getByUser($userId) {
         $pdo = Connection::getInstance()->getConnection();
         $stmt = $pdo->prepare("
